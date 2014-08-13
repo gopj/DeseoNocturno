@@ -26,17 +26,17 @@ class VerifyLogin extends CI_Controller {
 
 	function check_database($password){
 		//Field validation succeeded.  Validate against database
-		$username = $this->input->post('email');
+		$email = $this->input->post('email');
 
 		//query the database
-		$result = $this->user->login($username, $password);
+		$result = $this->user->login($email, $password);
 
 		if ($result){
 			$sess_array = array();
 
 			foreach($result as $row){
 				$sess_array = array(
-									'id' => $row->id,
+									'idUser' => $row->idUser,
 									'email' => $row->email
 								);
 				
