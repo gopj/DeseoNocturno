@@ -49,7 +49,6 @@
 </nav>
 
 <div class="container-dn">
-
 	<?php echo $output; ?>
 </div>
 </body>

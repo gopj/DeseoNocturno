@@ -13,7 +13,8 @@ class Login extends MY_Controller {
 		if($_SERVER['REQUEST_METHOD'] == "POST"){
 			$this->load->model("User_model", "user");
 
-			if($this->user->identificar($this->input->post('email'), $this->input->post('password'))){
+			if($this->user->identify($this->input->post('email'), $this->input->post('password'))){
+
 				// Preparar informacion para la sesion
 				$user = array(
 					'idUser' => $this->user['idUser'],
