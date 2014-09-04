@@ -6,37 +6,78 @@ class Sites extends MY_Controller {
 
 		parent::__construct();
 
+		$this->setLayout('admin');
+
+		$this->load->model("site_model", "site");
+
+
 	}
 
  	public function index(){
 
-		$this->load->view('sites/index');
+ 		if($this->session->userdata['user']['profile'] == FALSE || $this->session->userdata['user']['profile'] != '1'){
+			redirect(base_url().'login');
+		}
+
+		$data['sites'] = $this->site->getSites();
+
+		$this->load->view('sites/index', $data);
 	}
 
 	public function create($id = null){
 		
 		if ( $this->input->post() ){
 
-			$client = new Cliente_model();
+			$site = new Site_model();
 
-			$client['nombre'] = $this->input->post("nombre");
-			$client['direccion'] = $this->input->post("direccion");
-			$client['idMunicipio'] = $this->input->post("idMunicipio");
-			$client['asignado'] = 0;
-			$client['dia_visita'] = $this->input->post('dia_visita');
+			$site['siteName'] = $this->input->post("siteName");
+			$site['address'] = $this->input->post("address");
+			$site['phone'] = $this->input->post("phone");
 
-			if ( $client->save() ){
-				redirect('admin/clientes');
+			if ( $site->save() ){
+				redirect('admin/sites');
 			}
 		}
 
-		$municipio = new Municipio_model();
 
-		$data['perfil'] = $this->municipio->getByIdAsArray($id);
-		$data['perfiles'] = $this->municipio->getAllToSelect();
+		$this->load->view("sites/create");
+	}
+
+	public function update($id){
+
+		$data['site'] = $this->site->getByIdAsArray($id);
+
+		if (is_null($id)){
+			redirect("admin/sites");
+		}
 
 
-		$this->load->view("sites/create", $data);
+		if ( $this->input->post() ){
+
+			$site = new Site_model();
+
+			$site['idSite'] = $id;
+			$site['siteName'] = $this->input->post("siteName");
+			$site['address'] = $this->input->post("address");
+			$site['phone'] = $this->input->post("phone");
+
+			if ( $site->save() ){
+				redirect('admin/sites');
+			}
+		}
+
+
+		$this->load->view("sites/update", $data);
+	}
+
+
+	public function delete($id){
+		$this->site['idSite'] = $id;
+
+
+		$this->site->delete();		
+
+		redirect("admin/sites");
 	}	
 
 }

@@ -37,7 +37,6 @@ class User_model extends My_Model {
 		$password = $this->security->xss_clean($password);
 
 
-
 		// Preparar la consulta
 
 		$query = $this->db->query
@@ -51,13 +50,8 @@ class User_model extends My_Model {
 			LIMIT 1;
 		");
 		
-		/*$this->db->where('email', $email);
-		$this->db->where('password', sha1($password));
-		$this->db->limit(1);*/
-
 		// Obtenemos el resultado de la consulta
 		$query = $this->db->get($this->tableName);
-
 
 
 		// Si se encontro un resultado
@@ -73,4 +67,4 @@ class User_model extends My_Model {
 
 }
 
- ?>
+?>

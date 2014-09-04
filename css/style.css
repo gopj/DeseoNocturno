@@ -35,3 +35,13 @@ body {
 	padding: 10px 10px 10px;
 	margin: 0 auto 20px;
 }
+
+/* Para Admin */
+.container-dna {
+	width: 1170px;
+	height: auto;
+	padding: 10px 10px 10px;
+	margin: 0 auto 20px;
+	position: relative;
+	top: -76px;
+}

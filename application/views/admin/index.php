@@ -1,1 +1,0 @@
-<a href="<?php echo base_url('admin/sites'); ?>" class="btn btn-primary">Sites</a>

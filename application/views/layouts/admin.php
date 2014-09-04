@@ -5,11 +5,15 @@
 	<meta http-equiv="Content-type" content="text/html"; charset="utf-8" />
 	<title>Deseo Nocturno</title>
 
-	<?php echo link_tag( 'css/bootstrap.css' ) ?>
+	<?php echo link_tag( 'css/bootstrap.min.css' ) ?>
+	<?php echo link_tag( 'css/jquery.dataTables.min.css' ) ?>
 	<?php echo link_tag( 'css/style.css' ) ?>
 
 	<script src="<?=base_url('js/jquery-1.11.1.js')?>"> </script>
-	<script src="<?=base_url('js/bootstrap.js')?>"> </script>
+	<script src="<?=base_url('js/bootstrap.min.js')?>"> </script>
+	<script src="<?=base_url('js/jquery.dataTables.js')?>"> </script>
+
+	
 </head>
 <body>
 
@@ -57,7 +61,32 @@
 	</div><!-- /.container-fluid -->
 </nav>
 
-<div class="container-dn">
+<ul class="nav nav-pills nav-stacked" style="width: 260px;">
+	<?php if ($this->uri->segment(2) == "") { ?>
+		<li class="active">
+	<?php } else { ?>
+		<li class="inactive">
+	<?php } ?>
+			<a href="<?= base_url() . 'admin'; ?>">
+				<span class="badge pull-right"></span>
+				Admin Home
+			</a>
+		</li>
+	<?php if ($this->uri->segment(2) == "sites") { ?>
+		<li class="active">
+	<?php } else { ?>
+		<li class="inactive">
+	<?php } ?>
+			<a href="<?= base_url() . 'admin/sites'; ?>">
+				<span class="badge pull-right"></span>
+				Sites
+			</a>
+		</li>
+</ul>
+
+
+
+<div class="container-dna">
 	<?php echo $output; ?>
 </div>
 </body>
