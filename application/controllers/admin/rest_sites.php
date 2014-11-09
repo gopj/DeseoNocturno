@@ -12,7 +12,13 @@ class Rest_sites extends MY_Controller {
 
  	public function index(){
 
- 		if($this->session->userdata['user']['profile'] == FALSE || $this->session->userdata['user']['profile'] != '1'){
+ 		header('Content-Type: application/json');
+
+ 		/*if($this->session->userdata['user']['profile'] == FALSE || $this->session->userdata['user']['profile'] != '1'){
+			redirect(base_url().'login');
+		}*/
+
+		if ($_GET["x"] != 1){
 			redirect(base_url().'login');
 		}
 
@@ -27,14 +33,14 @@ class Rest_sites extends MY_Controller {
 			$all_sites[] = $res_sites;
 		}
 
-		$final_res = json_encode($all_sites);
+		$final_res = json_encode($all_sites, true);
 
-		echo $final_res;
+		echo "Sites ( " . $final_res . " )"; 
 
 	}
-
 	
-
 }
+
+ 
 
 ?>

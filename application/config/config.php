@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost:8080/DeseoNocturno';
+$config['base_url']	= 'http://192.168.100.127:8080/DeseoNocturno';
 
 /*
 |--------------------------------------------------------------------------
